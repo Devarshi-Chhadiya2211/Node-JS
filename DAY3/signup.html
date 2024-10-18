@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
+
+        body {
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            /* background-color: black; */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 3rem;
+            font-size: 14px;
+        }
+
+        .box {
+            max-width: 350px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #ffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 1px;
+            margin: 0 0 10px;
+            padding: 10px 0;
+            flex-grow: 1;
+            border-radius: 5px;
+        }
+
+        .heading {
+            margin: 22px auto 12px;
+            background-image: url("https://www.instagram.com/static/bundles/es6/sprite_core_b20f2a3cd7e4.png/b20f2a3cd7e4.png");
+            background-position: -98px 0;
+            height: 51px;
+            width: 177px;
+            overflow: hidden;
+        }
+
+        .field {
+            /* height: 50px; */
+            margin: 10px 0;
+            position: relative;
+            font-size: 14px;
+            width: 100%;
+            /* text-overflow: ellipsis; */
+        }
+
+        input {
+            /* margin-left: 5%; */
+            padding: 9px 0px 7px 9px;
+            font-size: 10px;
+            width: 20rem;
+            height: 2.5rem;
+            outline: none;
+            background: rgb(241, 241, 241);
+            border-radius: 3px;
+            border: 1px solid #efefef;
+        }
+
+        label {
+            position: absolute;
+            pointer-events: none;
+            left: 20px;
+            padding-bottom: 15px;
+            transform: translateY(10px);
+            line-height: 6px;
+            transition: all ease-out 0.1s;
+            font-size: 14px;
+            color: #999;
+            padding-top: 6px;
+        }
+
+        input::placeholder {
+            visibility: hidden;
+        }
+
+        .login-form ::-moz-placeholder {
+            color: transparent;
+        }
+
+        input:not(:placeholder-shown)+label {
+            transform: translateY(0);
+            font-size: 11px;
+        }
+
+        input:not(:placeholder-shown) {
+            padding-top: 14px;
+            padding-bottom: 2px;
+        }
+
+        .login-button {
+            text-align: center;
+            width: 70%;
+            margin-top: 2%;
+            margin-left: 15%;
+            padding: 0.5rem;
+            border: 1px solid transparent;
+            background-color: #3897f0;
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .separator {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #999;
+            margin-top: 6px;
+        }
+
+        .separator .line {
+            height: 1px;
+            width: 40%;
+            background-color: #dbdbdb;
+        }
+
+        .other {
+            display: flex;
+            text-align: center;
+            font-size: 12px;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .signing {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .fb-login-btn {
+            margin: 1rem;
+            border: 0;
+            cursor: pointer;
+            font-size: 14px;
+            color: #385185;
+            font-weight: 600;
+            background: transparent;
+        }
+
+        .fb-icon {
+            color: #385185;
+            font-size: 1rem;
+            padding-right: 1px;
+        }
+
+        .forgot-password {
+            font-size: 11px;
+            color: #003569;
+        }
+
+        .signup {
+            color: #3897f0;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box shadow p-3 mb-5 bg-body rounded">
+            <div class="heading"></div>
+            <form class="login-form">
+                <div class="field">
+                    <input id="name" type="tel" placeholder="Phone number, username, or email" />
+                    <label for="username">Phone number, username, or email</label>
+                </div>
+                <div class="field">
+                    <input id="password" type="password" placeholder="password" />
+                    <label for="password">Password</label>
+                </div>
+                <div class="field">
+                    <input id="name" type="password" placeholder="fullname" />
+                    <label for="password">Full Name</label>
+                </div>
+                <div class="field">
+                    <input id="password" type="password" placeholder="password" />
+                    <label for="password">Username</label>
+                </div>
+                <button class="login-button" title="login">Sign up</button>
+                <div class="separator">
+                    <div class="line"></div>
+                    <p>OR</p>
+                    <div class="line"></div>
+                </div>
+                <div class="other">
+                    <p>People who use our service may have <br>
+                        uploaded your contact information to Instagram. <a href="">Learn More</a><br>
+                        By signing up, you agree to our Terms, <br>
+                        Privacy Policy and Cookies Policy .</p>
+                    <!-- <h4>Forgot password?</h4> -->
+                </div>
+                <p class="signing">Have an account? <a class="signup" href="#">Log in</a></p>
+            </form>
+        </div>
+        <!-- <div class="box"> -->
+        <!-- </div> -->
+    </div>
+</body>
+
+</html>

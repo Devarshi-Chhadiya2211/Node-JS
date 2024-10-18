@@ -12,12 +12,15 @@ let server = http.createServer((req,res)=>{
         // let home = path.join(__dirname,'index.html')
         let a = fs.readFileSync('index.html','utf-8')
         res.end(a)
-    }else if(req.url == '/about'){
-        res.end("about page")
-    }else if(req.url == '/service'){
-        res.end("service page")
+    }else if(req.url == '/login'){
+        let b = fs.readFileSync('login.html','utf-8')
+        res.end(b)
+    }else if(req.url == '/signup'){
+        let c = fs.readFileSync('signup.html','utf-8')
+        res.end(c)
     }else{
-        res.end("page not error")
+        let d = fs.readFileSync('pagenotfound.html','utf-8')
+        res.end(d)
     }
 })
 server.listen(5000,()=>{
