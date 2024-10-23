@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data</h1>
+    <%  data.map((el)=>{  %>
+          <h1><%= el.name  %></h1> 
+          <h4> <%= el.measure %></h4>
+          <h3><%= el.time %></h3>
+           <h4><%= el.required %></h4>
+           <p><%= el.des %></p>
+           <img src=<%= el.img %> /> <br>
+          <button>Edit</button>
+          <button>Delete</button>
+    <% })   %>
+</body>
+</html>
