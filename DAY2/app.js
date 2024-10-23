@@ -25,7 +25,7 @@ fs.writeFile('file.txt',"Today's technology",(err)=>{
       }
 })
 
-fs.writeFileSync("hello.txt","Technology")
+fs.writeFileSync("hello.txt"," new Technology")
 
 // appendFile, appendFile
 
