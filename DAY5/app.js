@@ -6,9 +6,9 @@ let server = http.createServer((req, res) => {
     let a = fs.readFileSync("index.html",'utf-8')
     res.end(a);
   } else if (req.url == "/about") {
-    res.end("About");
+    res.end("About Us");
   } else if (req.url == "/service") {
-    res.end("What type of service do you want?");
+    res.end("Services");
   } else {
     res.end("Page Not Found !!!!!");
   }
