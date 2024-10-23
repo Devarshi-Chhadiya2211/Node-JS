@@ -8,5 +8,6 @@
 
    console.log(add(4,2))
    console.log(sub(4,2))
+   console.log(sub(4,3))
    console.log(mul(4,2))
    console.log(div(4,2))
