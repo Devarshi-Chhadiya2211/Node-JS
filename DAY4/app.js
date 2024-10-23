@@ -5,7 +5,7 @@ const fs = require('fs');
 
 try {
   fs.unlinkSync('unlink.txt');
-  console.log('File successfully deleted');
+  console.log('File deleted successfully');
 } catch (err) {
   console.error('Error deleting the file:', err);
 }
