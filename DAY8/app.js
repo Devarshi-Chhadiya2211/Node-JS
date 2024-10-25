@@ -30,23 +30,23 @@ app.get("/data/:id",(req,res)=>{
     res.redirect("/data")
 })
 
-// app.get("/edit/:id",(req,res)=>{
-//     let a = arr.filter((el)=>el.id == req.params.id)
-//     console.log(a)
-//     res.render("edit.ejs",{data : a})
-// })
+app.get("/edit/:id",(req,res)=>{
+    let a = arr.filter((el)=>el.id == req.params.id)
+    console.log(a)
+    res.render("edit.ejs",{data : a})
+})
 
-// app.post("/edit/:id",(req,res)=>{
-//     let a = req.params.id;
-//     arr = arr.map((el)=>{
-//         if(el.id == a){
-//             return {...el,...req.body}
-//         }else{
-//             return el;
-//         }
-//     })
-//     res.redirect("/data")
-// })
+app.post("/edit/:id",(req,res)=>{
+    let a = req.params.id;
+    arr = arr.map((el)=>{
+        if(el.id == a){
+            return {...el,...req.body}
+        }else{
+            return el;
+        }
+    })
+    res.redirect("/data")
+})
 
 
 app.listen(8080,()=>{
