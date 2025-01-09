@@ -12,28 +12,44 @@ ProductRouter.post("/add", async (req, res) => {
 });
 
 
+// ProductRouter.get("/allPro", async (req, res) => {
+//     const sort  = req.query.sort;
+    
+    
+//     try {
+
+//         if (sort === 'asc') {
+//             proModel.find((a, b) => a.price - b.price);
+//         } else if (sort === 'desc') {
+//             proModel.find((a, b) => b.price - a.price);
+//         }
+      
+
+//         // const data = await proModel.find().sort({ price: 1 });
+//         res.status(200).send(data);
+//     } catch (error) {
+//         res.status(500).send({ msg: error.message });
+//     }
+// });
+
+
 ProductRouter.get("/allPro", async (req, res) => {
+    const sort = req.query.sort;
+
     try {
-        const data = await proModel.find().sort({ price: 1 });
+        let data;
+        if (sort === 'asc') {
+            data = await proModel.find().sort({ price: 1 }); // Ascending order
+        } else if (sort === 'desc') {
+            data = await proModel.find().sort({ price: -1 }); // Descending order
+        } else {
+            data = await proModel.find(); // Default case, no sorting
+        }
+
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({ msg: error.message });
     }
 });
-
-// ProductRouter.get('/allPro', (req, res) => {
-//     const { sort } = req.query;
-  
-//     // let sortedProducts = [...products]; 
-//     // Create a copy of the array
-  
-//     if (sort === 'price_asc') {
-//         proModel.sort((a, b) => a.price - b.price);
-//     } else if (sort === 'price_desc') {
-//         proModel.sort((a, b) => b.price - a.price);
-//     }
-  
-//     // res.json(sortedProducts);
-//   });
 
 module.exports = ProductRouter;
