@@ -24,50 +24,10 @@ UserRouter.post("/register", async (req, res) => {
     } catch (error) {
         res.status(501).send({msg : error.message})
     }
-
-    // try {
-    //     bcrypt.hash(req.body.password, 5, async (err, hash) => {
-    //         if (err) {
-    //             return res.send({ msg: err })
-    //         }
-    //         let obj = {
-    //             username: req.body.username,
-    //             email: req.body.email,
-                
-    //             password: hash
-    //         }
-    //         let data = await UserModel.create(obj)
-
-    //         res.status(200).send({ msg: "User registered successfully" })
-    //     })
-    // } catch (error) {
-    //     res.status(501).send({ msg: error.message })
-    // }
 })
 
 
 UserRouter.post("/login", async (req, res) => {
-    // const { email, password } = req.body
-    // try {
-    //     let user = await UserModel.findOne({ email })
-    //     console.log(user);
-
-    //     if (user) {
-    //         bcrypt.compare(password, user.password, (err, result) => {
-    //             if (result) {
-    //                 const token = jwt.sign({ userID: user._id, username: user.username }, process.env.SECRET)
-    //                 console.log(token)
-    //                 res.status(200).send({ msg: "User Logged in successfully", token })
-    //             } else {
-    //                 res.status(501).send({ msg: "Incorrect Passwrod" })
-    //             }
-    //         })
-    //     } else {
-    //         res.status(501).send({ msg: "User not registered" })
-    //     }
-    // } catch (error) {
-    //     res.status(501).send({ msg: error.message })
-    // }
     try {
         const {email,password} = req.body
         let user = await UserModel.findOne({email : email})
@@ -77,15 +37,12 @@ UserRouter.post("/login", async (req, res) => {
         if(user.password != password){
             return res.send({msg : "Wrong Password"})
         }
-        const token = jwt.sign({userId : user._id, role : user.role},"nodejs")
+        const token = jwt.sign({userId : user._id, role : user.role},process.env.SECRET)
         res.send({msg : "User Login Successfull", token : token})
     } catch (error) {
         res.status(501).send({msg : error.message})
     }
 })
-
-
-
 
 
 
