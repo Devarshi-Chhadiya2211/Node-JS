@@ -79,7 +79,9 @@ const Login=()=> {
               </div>
               
               <input type="submit" value="Log In" class="btn btn-block btn-primary"/>
-
+              <p className="sign-up">
+                    Don't have an Account? <Link to={'/signup'}>Sign Up</Link>
+                  </p>
             </form>
           </div>
         </div>

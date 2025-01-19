@@ -140,7 +140,8 @@ function Signup() {
           Get Started
         </button>
       </form>
-    </>
+      <p className="sign-up text-center">Already have an Account?<Link to='/login'> Sign In</Link></p>
+      </>
   );
 }
 
