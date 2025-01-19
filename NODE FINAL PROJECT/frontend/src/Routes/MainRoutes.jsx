@@ -9,6 +9,7 @@ import Signup from '../Pages/Signup'
 // import Myblogs from '../Pages/Myblogs'
 // import EditBlog from '../Pages/EditBlog'
 import Admin from '../Pages/Admin'
+import AddProduct from '../Pages/AddProduct'
 
 const MainRoutes = () => {
   return (
@@ -18,10 +19,10 @@ const MainRoutes = () => {
         <Route path='/admin' element={<Admin/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<Signup/>}></Route>
-        {/* <Route path='/createblog' element={<PrivateRoute><CreateBlog/></PrivateRoute>}></Route>
-        <Route path='/allblogs/:id' element={<PrivateRoute><SingleBlog/></PrivateRoute>}></Route>
-        <Route path='/editblog/:id' element={<PrivateRoute><EditBlog/></PrivateRoute>}></Route>
-        <Route path='/myblogs' element={<PrivateRoute><Myblogs/></PrivateRoute>}></Route> */}
+        <Route path='/createblog' element={<AddProduct/>}></Route>
+        {/* <Route path='/allblogs/:id' element={<PrivateRoute><SingleBlog/></PrivateRoute>}></Route> */}
+        {/* <Route path='/editblog/:id' element={<PrivateRoute><EditBlog/></PrivateRoute>}></Route> */}
+        {/* <Route path='/myblogs' element={<PrivateRoute><Myblogs/></PrivateRoute>}></Route> */}
     </Routes>
     </>
   )

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+// import Header from "../Components/Header";
+// import Footer from "../Components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const CreateBlog = () => {
+const AddProduct = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ const CreateBlog = () => {
     description: "",
     image: "",
     category: "",
+    price: "",
     date: currentDate,
   });
 
@@ -48,7 +49,7 @@ const CreateBlog = () => {
     e.preventDefault();
     console.log(formData)
     try {
-      const response = await fetch(`http://localhost:5110/createblog`, {
+      const response = await fetch(`http://localhost:5110/createProduct`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,13 +60,13 @@ const CreateBlog = () => {
       
       const result = await response.json();
       if (response.ok) {
-        toast.success("Blog submitted successfully!");
+        toast.success("Product submitted successfully!");
         setTimeout(() => navigate("/"), 3000);
       } else {
-        toast.error(result.message || "Failed to add blog.");
+        toast.error(result.message || "Failed to add Product.");
       }
     } catch (error) {
-      toast.error("An error occurred while submitting the blog.");
+      toast.error("An error occurred while submitting the Product.");
     }
 
     setFormData({
@@ -73,12 +74,13 @@ const CreateBlog = () => {
       description: "",
       image: "",
       category: "",
+      price: ""
     });
   };
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -92,12 +94,12 @@ const CreateBlog = () => {
       />
 
       <section className="container my-5">
-        <h2 className="text-center mb-4">Write Your Blog</h2>
+        <h2 className="text-center mb-4">Add Your Product</h2>
         <form onSubmit={handleSubmit} className="row g-3">
-          {/* Blog Title */}
+          {/* Product Title */}
           <div className="col-12">
             <label htmlFor="title" className="form-label">
-              Blog Title
+              Product Title
             </label>
             <input
               type="text"
@@ -106,15 +108,15 @@ const CreateBlog = () => {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="Enter your blog title"
+              placeholder="Enter your Product title"
               required
             />
           </div>
 
-          {/* Blog Description */}
+          {/* Product Description */}
           <div className="col-12">
             <label htmlFor="description" className="form-label">
-              Blog Description
+              Product Description
             </label>
             <textarea
               className="form-control"
@@ -123,7 +125,7 @@ const CreateBlog = () => {
               rows="4"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter your blog description"
+              placeholder="Enter your Product description"
               required
             ></textarea>
           </div>
@@ -169,6 +171,21 @@ const CreateBlog = () => {
               required
             />
           </div>
+          <div className="col-12">
+            <label htmlFor="price" className="form-label">
+                Price
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="price"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="Enter your Product price"
+              required
+            />
+          </div>
 
           {/* Submit Button */}
           <div className="col-12 text-center">
@@ -179,9 +196,9 @@ const CreateBlog = () => {
         </form>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
 
-export default CreateBlog;
+export default AddProduct;

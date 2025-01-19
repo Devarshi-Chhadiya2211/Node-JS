@@ -6,26 +6,26 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const SingleProduct = () => {
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [Product, setProduct] = useState(null);
 
   useEffect(() => {
-    const fetchBlog = async () => {
+    const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5110/allblogs/${id}`);
+        const response = await fetch(`http://localhost:6276/allProducts/${id}`);
         if (!response.ok) {
-          throw new Error("Failed to fetch blog");
+          throw new Error("Failed to fetch Product");
         }
         const data = await response.json();
-        setBlog(data);
+        setProduct(data);
       } catch (error) {
-        console.error("Error fetching blog:", error);
+        console.error("Error fetching Product:", error);
       }
     };
 
-    fetchBlog();
+    fetchProduct();
   }, [id]);
 
-  if (!blog) {
+  if (!Product) {
     return (
       <div className="text-center mt-5">
         <div className="spinner-border text-primary" role="status">
@@ -39,23 +39,23 @@ const SingleProduct = () => {
     <>
       <Header />
       <section className="container mt-5">
-        {/* Blog Content */}
+        {/* Product Content */}
         <div className="card mb-5 shadow">
           <img
-            src={blog.image}
+            src={Product.image}
             className="card-img-top"
-            alt={blog.title}
+            alt={Product.title}
             style={{ maxHeight: "400px", objectFit: "cover" }}
           />
           <div className="card-body">
-            <h1 className="card-title text-center">{blog.title}</h1>
+            <h1 className="card-title text-center">{Product.title}</h1>
             <p className="card-text text-center text-muted">
               <small>
-                Published on {blog.date} | Category:{" "}
-                <span className="text-primary">{blog.category}</span>
+                Published on {Product.date} | Category:{" "}
+                <span className="text-primary">{Product.category}</span>
               </small>
             </p>
-            <p className="lead">{blog.description}</p>
+            <p className="lead">{Product.description}</p>
           </div>
         </div>
       </section>

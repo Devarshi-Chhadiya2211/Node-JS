@@ -3,7 +3,7 @@ const isAuth = require("../Middleware/isAuth");
 const ProductModel = require("../Model/ProductModel");
 const ProductRouter = Router();
 
-ProductRouter.post("/createblog", isAuth, async (req, res) => {
+ProductRouter.post("/createProduct", isAuth, async (req, res) => {
   try {
     let data = await ProductModel.create(req.body);
     res.send(data);
@@ -12,7 +12,7 @@ ProductRouter.post("/createblog", isAuth, async (req, res) => {
   }
 });
 
-ProductRouter.get("/allBlogs", async (req, res) => {
+ProductRouter.get("/allProduct", async (req, res) => {
   try {
     let data = await ProductModel.find().populate("userId", "email username");
     res.status(200).send(data);
@@ -21,7 +21,7 @@ ProductRouter.get("/allBlogs", async (req, res) => {
   }
 });
 
-ProductRouter.get("/myBlogs", isAuth, async (req, res) => {
+ProductRouter.get("/myProduct", isAuth, async (req, res) => {
   try {
     let data = await ProductModel.find({ userId: req.body.userId }).populate(
       "userId",
@@ -33,7 +33,7 @@ ProductRouter.get("/myBlogs", isAuth, async (req, res) => {
   }
 });
 
-ProductRouter.get("/allBlogs/:id", async (req, res) => {
+ProductRouter.get("/allProduct/:id", async (req, res) => {
   try {
     const { id } = req.params;
     let data = await ProductModel.findById(id).populate(
@@ -64,7 +64,7 @@ ProductRouter.delete("/delete", async (req, res) => {
     const { id } = req.body;
     console.log(id) 
     if (!id) {
-      return res.status(400).send({ msg: "Blog ID is required." });
+      return res.status(400).send({ msg: "Product ID is required." });
     }
 
     const result = await ProductModel.findById(id);
@@ -73,14 +73,14 @@ ProductRouter.delete("/delete", async (req, res) => {
     if (!result) {
       return res
         .status(404)
-        .send({ msg: "Blog not found or not authorized to delete." });
+        .send({ msg: "Product not found or not authorized to delete." });
     }
 
-    res.send({ msg: "Blog deleted successfully." });
+    res.send({ msg: "Product deleted successfully." });
   } catch (error) {
-    console.error("Error deleting blog:", error);
+    console.error("Error deleting Product:", error);
     res.status(500).send({
-      msg: "An error occurred while deleting the blog.",
+      msg: "An error occurred while deleting the Product.",
       error: error.message,
     });
   }
@@ -90,56 +90,56 @@ ProductRouter.get("/editget/:id", isAuth, async (req, res) => {
   try {
     const { id } = req.params;
     
-    const blog = await ProductModel.findById(id);
-    console.log(blog);
+    const Product = await ProductModel.findById(id);
+    console.log(Product);
 
 
-    if (!blog) {
-      return res.status(404).send({ msg: "Blog not found" });
+    if (!Product) {
+      return res.status(404).send({ msg: "Product not found" });
     }
 
-    res.send({ blog });
+    res.send({ Product });
   } catch (error) {
-    console.error("Error fetching blog:", error.message);
+    console.error("Error fetching Product:", error.message);
     res.status(500).send({ msg: "Internal Server Error" });
   }
 });
 
-ProductRouter.patch("/editblog", isAuth, async (req, res) => {
+ProductRouter.patch("/editProduct", isAuth, async (req, res) => {
   try {
     const { id } = req.body;
     
-    const blog = await ProductModel.findByIdAndUpdate(id,req.body);
-    console.log(blog)
+    const Product = await ProductModel.findByIdAndUpdate(id,req.body);
+    console.log(Product)
 
-    if (!blog) {
-      return res.status(404).send({ msg: "Blog not found" });
+    if (!Product) {
+      return res.status(404).send({ msg: "Product not found" });
     }
 
-    res.status(200).send({ msg: "Blog updated successfully", blog });
+    res.status(200).send({ msg: "Product updated successfully", Product });
   } catch (error) {
-    console.error("Error updating blog:", error);
+    console.error("Error updating Product:", error);
     res.status(500).send({ msg: "Internal Server Error" });
   }
 });
 
 ProductRouter.patch("/:id/like", isAuth, async (req, res) => {
   try {
-    const blog = await ProductModel.findById(req.params.id);
-    if (!blog) {
-      return res.status(404).json({ msg: "Blog not found" });
+    const Product = await ProductModel.findById(req.params.id);
+    if (!Product) {
+      return res.status(404).json({ msg: "Product not found" });
     }
 
-    // Check if user has already liked the blog
-    if (blog.likedBy.includes(req.body.userId)) {
-      return res.status(400).json({ msg: "You have already liked this blog" });
+    // Check if user has already liked the Product
+    if (Product.likedBy.includes(req.body.userId)) {
+      return res.status(400).json({ msg: "You have already liked this Product" });
     }
 
-    blog.like += 1;
-    blog.likedBy.push(req.body.userId); // Add user to likedBy
-    await blog.save();
+    Product.like += 1;
+    Product.likedBy.push(req.body.userId); // Add user to likedBy
+    await Product.save();
 
-    res.status(200).json(blog);
+    res.status(200).json(Product);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
