@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 // import Footer from "../Components/Footer";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const EditProduct = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
