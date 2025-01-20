@@ -67,7 +67,7 @@ ProductRouter.delete("/delete", async (req, res) => {
       return res.status(400).send({ msg: "Product ID is required." });
     }
 
-    const result = await ProductModel.findById(id);
+    const result = await ProductModel.findByIdAndDelete(id);
     console.log(result)
 
     if (!result) {
@@ -120,28 +120,6 @@ ProductRouter.patch("/editProduct", isAuth, async (req, res) => {
   } catch (error) {
     console.error("Error updating Product:", error);
     res.status(500).send({ msg: "Internal Server Error" });
-  }
-});
-
-ProductRouter.patch("/:id/like", isAuth, async (req, res) => {
-  try {
-    const Product = await ProductModel.findById(req.params.id);
-    if (!Product) {
-      return res.status(404).json({ msg: "Product not found" });
-    }
-
-    // Check if user has already liked the Product
-    if (Product.likedBy.includes(req.body.userId)) {
-      return res.status(400).json({ msg: "You have already liked this Product" });
-    }
-
-    Product.like += 1;
-    Product.likedBy.push(req.body.userId); // Add user to likedBy
-    await Product.save();
-
-    res.status(200).json(Product);
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
   }
 });
 

@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.use('/user',UserRouter)
-app.use('/product',ProductRouter)
+app.use('/',ProductRouter)
 
 app.listen(6276,()=>{
     connection()

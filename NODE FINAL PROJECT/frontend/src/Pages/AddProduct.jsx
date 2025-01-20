@@ -49,7 +49,7 @@ const AddProduct = () => {
     e.preventDefault();
     console.log(formData)
     try {
-      const response = await fetch(`http://localhost:5110/createProduct`, {
+      const response = await fetch(`http://localhost:6276/createProduct`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -146,12 +146,12 @@ const AddProduct = () => {
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="Lifestyle">Lifestyle</option>
-              <option value="Health">Health</option>
-              <option value="Family">Family</option>
-              <option value="Management">Management</option>
-              <option value="Travel">Travel</option>
-              <option value="Work">Work</option>
+              <option value="Jeans">Jeans</option>
+              <option value="Trouser">Trouser</option>
+              <option value="Cargo">Cargo</option>
+              <option value="Shirt">Shirt</option>
+              <option value="Sweat-shirt">Sweat-shirt</option>
+              <option value="T-shirt">T-shirt</option>
             </select>
           </div>
 

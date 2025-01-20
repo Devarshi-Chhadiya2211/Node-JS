@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+// import Header from "../Components/Header";
+// import Footer from "../Components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SingleProduct = () => {
@@ -11,7 +11,7 @@ const SingleProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:6276/allProducts/${id}`);
+        const response = await fetch(`http://localhost:6276/allProduct/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch Product");
         }
@@ -37,7 +37,7 @@ const SingleProduct = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <section className="container mt-5">
         {/* Product Content */}
         <div className="card mb-5 shadow">
@@ -59,7 +59,7 @@ const SingleProduct = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

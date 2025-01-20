@@ -7,11 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import Footer from "../Components/Footer";
 
 const HomePage = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [Products, setProducts] = useState([]);
 
-  const handleLike = async (blogId) => {
+  const handleLike = async (ProductId) => {
     try {
-      const response = await fetch(`http://localhost:6276/${blogId}/like`, {
+      const response = await fetch(`http://localhost:6276/${ProductId}/like`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -26,32 +26,32 @@ const HomePage = () => {
         return;
       }
 
-      const updatedBlog = await response.json();
-      setBlogs((prevBlogs) =>
-        prevBlogs.map((blog) =>
-          blog._id === updatedBlog._id ? updatedBlog : blog
+      const updatedProduct = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((Product) =>
+          Product._id === updatedProduct._id ? updatedProduct : Product
         )
       );
     } catch (error) {
-      console.error("Error liking the blog:", error);
+      console.error("Error liking the Product:", error);
     }
   };
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:6276/allBlogs");
+        const response = await fetch("http://localhost:6276/allProduct");
         if (!response.ok) {
-          throw new Error("Failed to fetch blogs");
+          throw new Error("Failed to fetch Products");
         }
         const data = await response.json();
-        setBlogs(data);
+        setProducts(data);
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error("Error fetching Products:", error);
       }
     };
 
-    fetchBlogs();
+    fetchProducts();
   }, []);
 
   return (
@@ -62,16 +62,17 @@ const HomePage = () => {
         
 
         <div className="row">
-          {blogs.map((blog) => (
-            <div key={blog._id} className="col-md-4 mb-4">
+          {Products.map((Product) => (
+            <div key={Product._id} className="col-md-4 mb-4">
               <div className="card h-100">
-                <Link to={`/allblogs/${blog._id}`}>
-                  <img src={blog.image} className="card-img-top" alt={blog.title} />
+                <Link to={`/allProduct/${Product._id}`}>
+                  <img src={Product.image} className="card-img-top" alt={Product.title} />
                 </Link>
                 <div className="card-body">
-                  <h5 className="card-title">{blog.title}</h5>
-                  <p className="card-text text-truncate">{blog.description}</p>
-                  <p className="text-muted">{blog.category}</p>
+                  <h4>Price: {Product.price}</h4>
+                  <h5 className="card-title">{Product.title}</h5>
+                  <p className="card-text text-truncate">{Product.description}</p>
+                  <p className="text-muted">{Product.category}</p>
                 </div>
                 
               </div>

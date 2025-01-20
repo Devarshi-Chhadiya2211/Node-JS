@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 // import Footer from "../Components/Footer";
 import { useNavigate } from "react-router-dom";
 
-const UserBlogs = () => {
+const UserProducts = () => {
     const navigate=useNavigate()
-  const [blogs, setBlogs] = useState([]);
+  const [Products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserBlogs = async () => {
+    const fetchUserProducts = async () => {
       try {
-        const response = await fetch("http://localhost:5110/myBlogs", {
+        const response = await fetch("http://localhost:6276/myProduct", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -20,25 +20,25 @@ const UserBlogs = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch user blogs");
+          throw new Error("Failed to fetch user Products");
         }
 
         const data = await response.json();
-        setBlogs(data);
+        setProducts(data);
       } catch (error) {
-        console.error("Error fetching user blogs:", error);
+        console.error("Error fetching user Products:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUserBlogs();
+    fetchUserProducts();
   }, []);
 
   const handleDelete = async (id) => {
     // console.log(id)
     try {
-      const response = await fetch(`http://localhost:5110/delete`, {
+      const response = await fetch(`http://localhost:6276/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -48,11 +48,11 @@ const UserBlogs = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to delete blog");
+        throw new Error("Failed to delete Product");
       }
 
     } catch (error) {
-      console.error("Error deleting blog:", error);
+      console.error("Error deleting Product:", error);
     }
   };
 
@@ -61,7 +61,7 @@ const UserBlogs = () => {
   }
 
   const handleEdit = (id) => {
-    navigate(`/EditBlog/${id}`); 
+    navigate(`/editPro/${id}`); 
   };
 
   return (
@@ -72,7 +72,7 @@ const UserBlogs = () => {
           <div className="masonry" id="sy3">
             <div className="grid-sizer"></div>
             <div className="container" style={{ width: "30%" }}>
-              {blogs.map((el) => (
+              {Products.map((el) => (
                 <article
                   key={el.id}
                   className="masonry__brick entry format-standard aos-init aos-animate"
@@ -93,6 +93,9 @@ const UserBlogs = () => {
                       <h1 className="entry__title">
                         {el.title}
                       </h1>
+                      <h4>
+                        {el.price}
+                      </h4>
                     </div>
                     <div className="entry__excerpt">
                       <p>
@@ -134,4 +137,4 @@ const UserBlogs = () => {
   );
 };
 
-export default UserBlogs;
+export default UserProducts;

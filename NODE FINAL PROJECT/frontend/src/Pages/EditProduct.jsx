@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const EditBlog = () => {
+const EditProduct = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const EditBlog = () => {
   });
 
   useEffect(() => {
-    const fetchBlog = async () => {
+    const fetchProduct = async () => {
       try {
         const response = await fetch(`http://localhost:6276/editget/${id}`, {
           method: "GET",
@@ -30,17 +30,17 @@ const EditBlog = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch blog data.");
+          throw new Error("Failed to fetch Product data.");
         }
 
         const data = await response.json();
-        setFormData(data.blog);
+        setFormData(data.Product);
       } catch (error) {
-        console.error("Error fetching blog data:", error);
+        console.error("Error fetching Product data:", error);
       }
     };
 
-    fetchBlog();
+    fetchProduct();
   }, [id, token]);
 
   const handleChange = (e) => {
@@ -51,7 +51,7 @@ const EditBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:6276/editblog`, {
+      const response = await fetch(`http://localhost:6276/edit/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -61,14 +61,14 @@ const EditBlog = () => {
       });
 
       if (response.ok) {
-        toast.success("Blog updated successfully!");
+        toast.success("Product updated successfully!");
         setTimeout(() => navigate("/"), 3000);
       } else {
         const result = await response.json();
-        toast.error(result.message || "Failed to update blog.");
+        toast.error(result.message || "Failed to update Product.");
       }
     } catch (error) {
-      toast.error("An error occurred while updating the blog.");
+      toast.error("An error occurred while updating the Product.");
     }
   };
 
@@ -78,12 +78,12 @@ const EditBlog = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <section className="container my-5">
-        <h2 className="text-center mb-4">Edit Your Blog</h2>
+        <h2 className="text-center mb-4">Edit Your Product</h2>
         <form onSubmit={handleSubmit} className="row g-3">
-          {/* Blog Title */}
+          {/* Product Title */}
           <div className="col-12">
             <label htmlFor="title" className="form-label">
-              Blog Title
+              Product Title
             </label>
             <input
               type="text"
@@ -92,15 +92,31 @@ const EditBlog = () => {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="Enter your blog title"
+              placeholder="Enter your Product title"
               required
             />
           </div>
 
-          {/* Blog Description */}
+          <div className="col-12">
+            <label htmlFor="price" className="form-label">
+                Price
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="price"
+              name="price"
+              value={formData.price}
+              onChange={handleChange}
+              placeholder="Enter your Product price"
+              required
+            />
+          </div>
+
+          {/* Product Description */}
           <div className="col-12">
             <label htmlFor="description" className="form-label">
-              Blog Description
+              Product Description
             </label>
             <textarea
               className="form-control"
@@ -109,7 +125,7 @@ const EditBlog = () => {
               rows="5"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter your blog description"
+              placeholder="Enter your Product description"
               required
             ></textarea>
           </div>
@@ -127,15 +143,16 @@ const EditBlog = () => {
               onChange={handleChange}
               required
             >
-              <option value="" disabled>
+               <option value="" disabled>
                 Select a category
               </option>
-              <option value="Lifestyle">Lifestyle</option>
-              <option value="Health">Health</option>
-              <option value="Family">Family</option>
-              <option value="Management">Management</option>
-              <option value="Travel">Travel</option>
-              <option value="Work">Work</option>
+              <option value="Jeans">Jeans</option>
+              <option value="Trouser">Trouser</option>
+              <option value="Cargo">Cargo</option>
+              <option value="Shirt">Shirt</option>
+              <option value="Sweat-shirt">Sweat-shirt</option>
+              <option value="T-shirt">T-shirt</option>
+           
             </select>
           </div>
 
@@ -159,7 +176,7 @@ const EditBlog = () => {
           {/* Submit Button */}
           <div className="col-12 text-center">
             <button type="submit" className="btn btn-primary btn-lg">
-              Update Blog
+              Update Product
             </button>
           </div>
         </form>
@@ -170,4 +187,4 @@ const EditBlog = () => {
   );
 };
 
-export default EditBlog;
+export default EditProduct;

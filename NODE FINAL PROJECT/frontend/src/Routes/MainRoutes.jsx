@@ -3,13 +3,11 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../Pages/Home'
 import Login from '../Pages/Login'
 import Signup from '../Pages/Signup'
-// import CreateBlog from '../Pages/CreateBlog'
-// import SingleBlog from '../Pages/SingleBlog'
-// import PrivateRoute from '../Pages/PrivateRoute'
-// import Myblogs from '../Pages/Myblogs'
-// import EditBlog from '../Pages/EditBlog'
+import MyProduct from '../Pages/MyProduct'
 import Admin from '../Pages/Admin'
 import AddProduct from '../Pages/AddProduct'
+import SingleProduct from '../Pages/SingleProduct'
+import EditProduct from '../Pages/EditProduct'
 
 const MainRoutes = () => {
   return (
@@ -19,10 +17,10 @@ const MainRoutes = () => {
         <Route path='/admin' element={<Admin/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<Signup/>}></Route>
-        <Route path='/createblog' element={<AddProduct/>}></Route>
-        {/* <Route path='/allblogs/:id' element={<PrivateRoute><SingleBlog/></PrivateRoute>}></Route> */}
-        {/* <Route path='/editblog/:id' element={<PrivateRoute><EditBlog/></PrivateRoute>}></Route> */}
-        {/* <Route path='/myblogs' element={<PrivateRoute><Myblogs/></PrivateRoute>}></Route> */}
+        <Route path='/addPro' element={<AddProduct/>}></Route>
+        <Route path='/allProduct/:id' element={<SingleProduct/>}></Route>
+        <Route path='/editPro/:id' element={<EditProduct/>}></Route>
+        <Route path='/myPro' element={<MyProduct/>}></Route>
     </Routes>
     </>
   )
