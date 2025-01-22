@@ -3,8 +3,7 @@ import React from "react";
 import "../assets/css/admin.css";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-// import Navbar from "./Navbar";
-// import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 const Admin= () => {
   return (
@@ -19,7 +18,7 @@ const Admin= () => {
         <div className="admin-card">
           <h2>Products</h2>
           <p>Add, update, or delete products.</p>
-          <button>Manage Products</button>
+          <button><Link to="/addproduct"> Manage Products</Link></button>
         </div>
         <div className="admin-card">
           <h2>Orders</h2>
