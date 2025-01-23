@@ -7,6 +7,19 @@ import Footer from "../Components/Footer";
 // import Footer from "./Footer";
 
 const HomePage = () => {
+
+  const [Products, setProducts] = useState([]);
+
+  const handleLike = async (ProductId) => {
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="homepage-container">
       <Navbar/>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import '../assets/css/loginsignup.css';
-import { Link, useNavigate } from 'react-router-dom';
+import '../assets/css/Signup.css';
+import { Link, Links, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 function Signup() {
   const [role, setRole] = useState('');
@@ -56,90 +58,105 @@ function Signup() {
 
   return (
     <>
+      <Navbar />
       <ToastContainer />
-      <form onSubmit={handleSubmit} method="post">
-        <div className="top-row">
-          <div className="field-wrap">
-            <label>
-              Username<span className="req">*</span>
-            </label>
-            <input
-              type="text"
-              name="username"
-              value={state.username}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
+      <div class="contents order-2 order-md-1">
+
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-7">
+              <h3>Signin to <strong>E-commerce website</strong></h3>
+
+              <form onSubmit={handleSubmit} method="post">
+                <div className="form-group first">
+                  <div className="field-wrap">
+                    <label>
+                      Username<span className="req">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="username"
+                      value={state.username}
+                      onChange={handleChange}
+                      required class="form-control"
+                      autoComplete="off"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    Email Address<span className="req">*</span>
+                  </label>
+                  <input
+                    type="email" class="form-control"
+                    name="email"
+                    value={state.email}
+                    onChange={handleChange}
+                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>
+                    Set A Password<span className="req">*</span>
+                  </label>
+                  <input
+                    type="password" class="form-control"
+                    name="password"
+                    value={state.password}
+                    onChange={handleChange}
+                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="field-wrap">
+                  <label>
+                    Select Role<span className="req">*</span>
+                  </label>
+                  <select
+                    name="role" class="form-control"
+                    value={state.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>
+                      Choose Role
+                    </option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                </div>
+
+                {role === 'admin' && (
+                  <div className="field-wrap">
+                    <label>
+                      Admin Code<span className="req">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="adminCode"
+                      value={state.adminCode}
+                      onChange={handleChange}
+                      required class="form-control"
+                      autoComplete="off"
+                    />
+                  </div>
+                )}
+
+                <button type="submit" class="btn btn-block btn-primary">
+                  Get Started
+                </button>
+              </form>
+              <h6>Already have an account <Link to="/login">Login here</Link></h6>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="field-wrap">
-          <label>
-            Email Address<span className="req">*</span>
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={state.email}
-            onChange={handleChange}
-            required
-            autoComplete="off"
-          />
-        </div>
-
-        <div className="field-wrap">
-          <label>
-            Set A Password<span className="req">*</span>
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={state.password}
-            onChange={handleChange}
-            required
-            autoComplete="off"
-          />
-        </div>
-
-        <div className="field-wrap">
-          <label>
-            Select Role<span className="req">*</span>
-          </label>
-          <select
-            name="role"
-            value={state.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="" disabled>
-              Choose Role
-            </option>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-
-        {role === 'admin' && (
-          <div className="field-wrap">
-            <label>
-              Admin Code<span className="req">*</span>
-            </label>
-            <input
-              type="text"
-              name="adminCode"
-              value={state.adminCode}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-        )}
-
-        <button type="submit" className="button button-block">
-          Get Started
-        </button>
-      </form>
+      <Footer />
     </>
   );
 }

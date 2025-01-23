@@ -7,6 +7,7 @@ import Footer from "../Components/Footer";
 // import Footer from "./Footer";
 
 const ProductPage = () => {
+  
   const [products] = useState([
     { id: 1, name: "Product 1", price: 10, category: "Category 1", size: "M", color: "Red" },
     { id: 2, name: "Product 2", price: 20, category: "Category 2", size: "L", color: "Blue" },

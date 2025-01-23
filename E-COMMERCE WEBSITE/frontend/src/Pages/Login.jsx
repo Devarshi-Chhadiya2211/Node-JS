@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Links, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  {jwtDecode}  from 'jwt-decode';
 import '../assets/css/signup.css'
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 const Login=()=> {
   const [state, setState] = useState({
@@ -58,18 +60,19 @@ const Login=()=> {
   };
   return (
     <>
+    <Navbar/>
     <ToastContainer />
-  <div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style={{
+  {/* <div class="half"> */}
+    {/* <div class="bg order-1 order-md-2" style={{
         backgroundImage: "url('https://preview.colorlib.com/theme/bootstrap/login-form-02/images/bg_1.jpg')",
-      }}></div>
+      }}></div> */}
     <div class="contents order-2 order-md-1">
 
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Login to <strong>Colorlib</strong></h3>
-            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+            <h3>Login to <strong>E-commerce website</strong></h3>
+            {/* <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p> */}
             <form onSubmit={handleSubmit}>
               <div class="form-group first">
                 <label for="username">Username</label>
@@ -83,14 +86,15 @@ const Login=()=> {
               <input type="submit" value="Log In" class="btn btn-block btn-primary"/>
 
             </form>
+            <h6>Dont have an account?<Link to="/signup">Signup here</Link></h6>
           </div>
         </div>
       </div>
     </div>
 
     
-  </div>
-    
+  {/* </div> */}
+    <Footer/>
     </>
   )
 }

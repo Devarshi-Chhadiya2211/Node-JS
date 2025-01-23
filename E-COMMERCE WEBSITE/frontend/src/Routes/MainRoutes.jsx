@@ -6,6 +6,7 @@ import Signup from '../Pages/Signup'
 import Admin from '../Pages/Admin'
 import ProductPage from '../Pages/ProductPage'
 import AddPro from '../Pages/AddProduct'
+import ContactForm from '../Pages/Contact'
 
 const MainRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const MainRoutes = () => {
                 <Route path='/admin' element={<Admin/>} />
                 <Route path='/product' element={<ProductPage/>} />
                 <Route path='/addproduct' element={<AddPro/>} />
+                <Route path='/contactus' element={<ContactForm/>} />
             </Routes>
         </>
     )
